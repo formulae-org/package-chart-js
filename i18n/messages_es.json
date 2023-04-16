@@ -1,0 +1,29 @@
+{
+	"pathChart" : "Gráficas de datos",
+
+	"childrenChart" : [ "Datos", "Opciones" ],
+	
+	"nameBar"     : "Gráfica de barras",
+	"mnemonicBar" : "GráficaBarras",
+	"leafBar"     : "Gráfica de barras",
+	
+	"nameLine"     : "Gráfica de líneas",
+	"mnemonicLine" : "GráficaLíneas",
+	"leafLine"     : "Gráfica de líneas",
+	
+	"nameArea"     : "Gráfica de area",
+	"mnemonicArea" : "GráficaÁrea",
+	"leafArea"     : "Área",
+	
+	"nameDot"     : "Gráfica de puntos",
+	"mnemonicDot" : "GráficaPuntos",
+	"leafDot"     : "Puntos",
+	
+	"nameStep"     : "Gráfica de escalón",
+	"mnemonicStep" : "GráficaEscalón",
+	"leafStep"     : "Escalón",
+	
+	"namePie"     : "Gráfica de pastel",
+	"mnemonicPie" : "GráficaPastel",
+	"leafPie"     : "Pastel"
+}

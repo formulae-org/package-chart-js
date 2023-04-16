@@ -1,0 +1,29 @@
+{
+	"pathChart" : "Chart",
+
+	"childrenChart" : [ "Data", "Options" ],
+	
+	"nameBar"     : "Bar chart",
+	"mnemonicBar" : "BarChart",
+	"leafBar"     : "Bar",
+	
+	"nameLine"     : "Line chart",
+	"mnemonicLine" : "LineChart",
+	"leafLine"     : "Line",
+	
+	"nameArea"     : "Area chart",
+	"mnemonicArea" : "AreaChart",
+	"leafArea"     : "Area",
+	
+	"nameDot"     : "Dot chart",
+	"mnemonicDot" : "DotChart",
+	"leafDot"     : "Dot",
+	
+	"nameStep"     : "Step chart",
+	"mnemonicStep" : "StepChart",
+	"leafStep"     : "Step",
+	
+	"namePie"     : "Pie chart",
+	"mnemonicPie" : "PieChart",
+	"leafPie"     : "Pie"
+}

@@ -45,6 +45,7 @@ Chart.Options = class extends CanonicalOptions {
 		this.domainText = null;
 		this.rangeText = null;
 		this.logarithmicScale = null;
+		this.starting = 1;
 	}
 	
 	checkOption(tag, option) {
@@ -319,6 +320,17 @@ Chart.Options = class extends CanonicalOptions {
 				ReductionManager.setInError(value, "Option is not a boolean value");
 				return false;
 			}
+			
+			case "starting": {
+				let starting = CanonicalArithmetic.getInteger(value);
+				if (starting === undefined) {
+					ReductionManager.setInError(value, "Value is not a valid number");
+					return false;
+				}
+				
+				this.starting = starting;
+				return true;
+			}
 		}
 		
 		ReductionManager.setInError(option.children[0], "Unknown option");
@@ -328,11 +340,49 @@ Chart.Options = class extends CanonicalOptions {
 
 Chart.getDataTable = (tag, data, chartOptions) => {
 	let cols = Utils.isMatrix(data);
-	if (cols < 0) {
-		ReductionManager.setInError(data, "Data is not a matrix");
-		return null;
+	
+	if (cols <= 0) {
+		if (data.getTag() !== "List.List") {
+			ReductionManager.setInError(data, "Invalid data");
+			return null;
+		}
+		
+		let dataTable = new google.visualization.DataTable();
+		dataTable.addColumn("number");
+		if (chartOptions.seriesNames === null) {
+			dataTable.addColumn("number");
+		}
+		else {
+			dataTable.addColumn("number", chartOptions.seriesNames[c - 1]);
+		}
+
+		dataTable.addRows(data.children.length);
+		
+		let number;
+		for (let r = 0, R = data.children.length; r < R; ++r) {
+			try {
+				number = data.children[r].evaluate();
+				if (number <= 0 && (chartOptions.isPie || chartOptions.isLogarithmicScale)) {
+					ReductionManager.setInError(
+						data.children[r],
+						"Non-positive value for " + (chartOptions.isPie ? "pie chart" : "logarithmic scale")
+					);
+					return null;
+				}
+				
+				dataTable.setValue(r, 0, r + chartOptions.starting);
+				dataTable.setValue(r, 1, number);
+			}
+			catch (error) {
+				ReductionManager.setInError(data.children[r], "Value is not numeric");
+				return null;
+			}
+		}
+		
+		return dataTable;
 	}
-	if (cols <= 1) {
+	
+	if (cols === 1) {
 		ReductionManager.setInError(data, "Data has no series");
 		return null;
 	}

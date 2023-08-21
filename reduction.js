@@ -46,6 +46,7 @@ Chart.Options = class extends CanonicalOptions {
 		this.rangeText = null;
 		this.logarithmicScale = null;
 		this.starting = 1;
+		this.dotSize = null;
 	}
 	
 	checkOption(tag, option) {
@@ -331,6 +332,17 @@ Chart.Options = class extends CanonicalOptions {
 				this.starting = starting;
 				return true;
 			}
+			
+			case "dot size": {
+				let size = CanonicalArithmetic.getInteger(value);
+				if (size === undefined) {
+					ReductionManager.setInError(value, "Value is not a valid number");
+					return false;
+				}
+				
+				this.dotSize = size;
+				return true;
+			}
 		}
 		
 		ReductionManager.setInError(option.children[0], "Unknown option");
@@ -425,8 +437,8 @@ Chart.getDataTable = (tag, data, chartOptions) => {
 					}
 				}
 			}
-
-			// values			
+			
+			// values
 			if (c == 0) {
 				if (areCategoriesString) {
 					if (data.children[r].children[0].getTag() == "String.String") {
@@ -547,6 +559,10 @@ Chart.chart = async (chartExpression, session) => {
 		
 		if (chartOptions.logarithmicScale !== null) {
 			options[chartOptions.horizontalDomain ? "vAxis" : "hAxis"].logScale = chartOptions.logarithmicScale;
+		}
+		
+		if (chartOptions.dotSize !== null) {
+			options.pointSize = chartOptions.dotSize;
 		}
 		
 		//////////////////////////////////////////

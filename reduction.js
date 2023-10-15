@@ -628,10 +628,10 @@ Chart.chart = async (chartExpression, session) => {
 };
 
 Chart.setReducers = () => {
-	ReductionManager.addReducer("Chart.Bar",  Chart.chart);
-	ReductionManager.addReducer("Chart.Line", Chart.chart);
-	ReductionManager.addReducer("Chart.Area", Chart.chart);
-	ReductionManager.addReducer("Chart.Dot",  Chart.chart);
-	ReductionManager.addReducer("Chart.Step", Chart.chart);
-	ReductionManager.addReducer("Chart.Pie",  Chart.chart);
+	ReductionManager.addReducer("Chart.Bar",  Chart.chart, "Chart.chart");
+	ReductionManager.addReducer("Chart.Line", Chart.chart, "Chart.chart");
+	ReductionManager.addReducer("Chart.Area", Chart.chart, "Chart.chart");
+	ReductionManager.addReducer("Chart.Dot",  Chart.chart, "Chart.chart");
+	ReductionManager.addReducer("Chart.Step", Chart.chart, "Chart.chart");
+	ReductionManager.addReducer("Chart.Pie",  Chart.chart, "Chart.chart");
 };

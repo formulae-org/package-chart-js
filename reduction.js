@@ -49,9 +49,10 @@ Chart.Options = class extends CanonicalOptions {
 		this.dotSize = null;
 	}
 	
-	checkOption(tag, option) {
+	checkOption(expression, option) {
 		let name = option.children[0].get("Value").toLowerCase();
 		let value = option.children[1];
+		let tag = expression.getTag();
 		
 		switch (name) {
 			case "size": {
@@ -120,7 +121,7 @@ Chart.Options = class extends CanonicalOptions {
 				this.rangeText = value.get("Value");
 				return true;
 			}
-
+			
 			case "3d": {
 				if (tag !== "Chart.Pie") {
 					ReductionManager.setInError(option, "Invalid option for the type of chart");
@@ -497,9 +498,7 @@ Chart.chart = async (chartExpression, session) => {
 	
 	let optionsExpr = chartExpression.children[1];
 	let chartOptions = new Chart.Options();
-	if (optionsExpr !== undefined && !chartOptions.checkOptions(tag, optionsExpr)) {
-		return false;
-	}
+	chartOptions.checkOptions(chartExpression, optionsExpr);
 	
 	let data = chartExpression.children[0];
 	let dataTable = Chart.getDataTable(tag, data, chartOptions);

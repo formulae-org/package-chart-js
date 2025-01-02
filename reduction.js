@@ -66,13 +66,13 @@ Chart.Options = class extends CanonicalOptions {
 					return false;
 				}
 				
-				let w = CanonicalArithmetic.getInteger(value.children[0]);
+				let w = CanonicalArithmetic.getNativeInteger(value.children[0]);
 				if (w === undefined || w <= 0) {
 					ReductionManager.setInError(value.children[0], "Value is not a valid number");
 					return false;
 				}
 				
-				let h = CanonicalArithmetic.getInteger(value.children[1]);
+				let h = CanonicalArithmetic.getNativeInteger(value.children[1]);
 				if (h === undefined || h <= 0) {
 					ReductionManager.setInError(value.children[1], "Value is not a valid number");
 					return false;
@@ -324,7 +324,7 @@ Chart.Options = class extends CanonicalOptions {
 			}
 			
 			case "starting": {
-				let starting = CanonicalArithmetic.getInteger(value);
+				let starting = CanonicalArithmetic.getNativeInteger(value);
 				if (starting === undefined) {
 					ReductionManager.setInError(value, "Value is not a valid number");
 					return false;
@@ -335,7 +335,7 @@ Chart.Options = class extends CanonicalOptions {
 			}
 			
 			case "dot size": {
-				let size = CanonicalArithmetic.getInteger(value);
+				let size = CanonicalArithmetic.getNativeInteger(value);
 				if (size === undefined) {
 					ReductionManager.setInError(value, "Value is not a valid number");
 					return false;

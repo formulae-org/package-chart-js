@@ -16,7 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-'use strict';
+"use strict";
 
 export class Chart extends Formulae.Package {}
 
@@ -368,7 +368,7 @@ Chart.getDataTable = (tag, data, chartOptions) => {
 		else {
 			dataTable.addColumn("number", chartOptions.seriesNames[c - 1]);
 		}
-
+		
 		dataTable.addRows(data.children.length);
 		
 		let number;
@@ -407,10 +407,10 @@ Chart.getDataTable = (tag, data, chartOptions) => {
 	
 	let rows = data.children.length;
 	let areCategoriesString = data.children[0].children[0].getTag() == "String.String";
-
+	
 	let isPie = tag === "Chart.Pie";
 	let isLogarihmicScale = chartOptions.logarithmicScale === true;
-
+	
 	
 	if (!areCategoriesString && isPie) {
 		ReductionManager.setInError(data, "Pie chart must have non-numerical categories");
@@ -572,7 +572,7 @@ Chart.chart = async (chartExpression, session) => {
 		div.style.position = "absolute";
 		div.style.top = "-9999px";
 		document.body.appendChild(div);
-				
+		
 		let chart;
 		
 		switch (tag) {
@@ -621,7 +621,7 @@ Chart.chart = async (chartExpression, session) => {
 		});
 		chart.draw(dataTable, options);
 	});
-		
+	
 	chartExpression.replaceBy(result);
 	return true;
 };

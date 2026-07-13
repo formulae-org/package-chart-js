@@ -24,7 +24,7 @@ Chart.setEditions = function() {
 	[ "Bar", "Line", "Area", "Dot", "Step", "Pie" ].forEach(
 		tag => Formulae.addEdition(
 			Chart.messages.pathChart,
-			null,
+			Formulae.icon("Chart." + tag, 1),
 			Chart.messages["leaf" + tag],
 			() => Expression.wrapperEdition("Chart." + tag)
 		)

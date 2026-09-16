@@ -1,6 +1,6 @@
 # package-chart-js
 
-Chart package for [Fōrmulæ](https://formulae.org) — the visual environment for **computing**, **composing**, and **conversing** with tree-structured expressions.
+Chart package for [Fōrmulæ](https://formulae.org) — the visual environment for **composing**, **conversing**, and **computing** with tree-structured expressions.
 
 This repository contains the source code for the **chart package**. It contains functionality to create charts
 
